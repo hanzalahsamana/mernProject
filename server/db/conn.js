@@ -3,6 +3,6 @@ const DB = process.env.DATABASE;
 
 mongoose.connect(DB).then(() => {
     console.log('connection successfully')
-}).catch(() => {
-    console.log('connection denied')
+}).catch((err) => {
+    console.log('connection denied', err)
 })
