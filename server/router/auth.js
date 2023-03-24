@@ -3,12 +3,18 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const User = require('../model/userSchema')
+const authenticate = require('../middleware/authenticate')
 
 require('../db/conn')
 
 router.get('/', (req, res) => {
     res.send('Hello world from the router server')
 })
+
+router.get('/about', authenticate, (req, res) => {
+    res.send(req.rootUser)
+})
+
 
 
 router.post('/register', async (req, res) => {
