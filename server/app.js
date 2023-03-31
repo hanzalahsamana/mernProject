@@ -7,7 +7,9 @@ dotenv.config({ path: './config.env' })
 require('./db/conn')
 // const User = require('./model/userSchema');
 app.use(express.json());
-app.use(require('./router/auth'))
+app.use(require('./router/auth'));
+const movieRoutes = require("./router/movies");
+app.use("/api", movieRoutes);
 
 const PORT = process.env.PORT;
 
@@ -19,6 +21,7 @@ const middleware = (req, res, next) => {
 app.get('/', (req, res) => {
     res.send('Hello world from the server')
 })
+
 
 app.get('/about', middleware, (req, res) => {
     res.send('Hello about world from the server')
